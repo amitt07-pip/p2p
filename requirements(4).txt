@@ -1,0 +1,8 @@
+python-telegram-bot==20.4
+python-dotenv==1.0.0
+telethon==1.42.0
+telegram
+pillow
+requests
+psycopg2-binary
+cryptg

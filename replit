@@ -1,0 +1,42 @@
+modules = ["python-3.11"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+packages = ["cargo", "freetype", "lcms2", "libiconv", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "openssl", "rustc", "tcl", "tk", "zlib", "cacert"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "p2pmart"
+
+[[workflows.workflow]]
+name = "p2pmart"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python p2pmart.py"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[userenv]
+
+[userenv.shared]
+TELEGRAM_API_ID = "38156486"
+TELEGRAM_API_HASH = "37a88a368ed0c13b8836d9baf35ba512"
+TELEGRAM_PHONE = "+917050801212"
+
+[deployment]
+run = ["sh", "-c", "python p2pmart.py"]
+deploymentTarget = "gce"
+ignorePorts = true
